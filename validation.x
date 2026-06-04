@@ -14,3 +14,9 @@
 }
 
 %end
+
+%hook ISURLOperation
+-(BOOL)_isTrustExtendedValidation:(id)secTrust {
+    return YES; // override it lol
+}
+%end
