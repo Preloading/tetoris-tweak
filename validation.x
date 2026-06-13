@@ -9,7 +9,7 @@
 %hook ISURLBag
 
 -(void)loadFromDictionary:(NSDictionary*)dict returningError:(NSError**)error {
-    NSLog(@"bag load! -> %@", dict);
+    // NSLog(@"bag load! -> %@", dict);
     return;
 }
 
@@ -20,3 +20,4 @@
     return YES; // override it lol
 }
 %end
+
