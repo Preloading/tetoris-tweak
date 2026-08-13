@@ -6,14 +6,15 @@
 
 %end
 
-%hook ISURLBag
+// %hook ISURLBag
 
--(void)loadFromDictionary:(NSDictionary*)dict returningError:(NSError**)error {
-    // NSLog(@"bag load! -> %@", dict);
-    return;
-}
+// -(void)loadFromDictionary:(NSDictionary*)dict returningError:(NSError**)error {
+//     NSLog(@"bag load! -> %@", dict);
+//     %orig;
+//     return;
+// }
 
-%end
+// %end
 
 %hook ISURLOperation
 -(BOOL)_isTrustExtendedValidation:(id)secTrust {
@@ -21,3 +22,19 @@
 }
 %end
 
+%hook ISCertificate 
+
+-(BOOL)checkData:(id)data againstSignature:(id)sig {
+    return YES;
+}
+
+%end
+
+%hook ISURLBag
+
+-(BOOL)urlIsTrusted:(id)url {
+    NSLog(@"trusted -> %@", [self valueForKey:@"_dictionary"]);
+    return YES;
+}
+
+%end
